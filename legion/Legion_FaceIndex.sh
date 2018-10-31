@@ -13,7 +13,6 @@ if [ $1 != "" ]
         FACEINDEX_SERVER=$2
       ;;
     esac
-    done
 fi
 
 echo "Setting FACE_RECOGNITION_SERVER to: $FACEINDEX_SERVER"
