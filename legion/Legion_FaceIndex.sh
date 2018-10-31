@@ -2,14 +2,10 @@
 # Default Server
 FACEINDEX_SERVER=10.0.0.41
 
-while getopts u:d:p:f: option; do
-case ${option} in
-  l)
+if $1 == "l"
     FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
-    ;;
-  i)
-    FACEINDEX_SERVER=${OPTARG}
-    ;;
+else if $1 == "i"
+    FACEINDEX_SERVER=$2
 esac
 done
 
