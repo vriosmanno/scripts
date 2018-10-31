@@ -2,18 +2,19 @@
 # Default Server
 FACEINDEX_SERVER=10.0.0.41
 
-if [ $1 != "" ]
-    key="$1"
+while [ "$1" != "" ]; do
+    KEY=`echo $1 | awk -F= '{print $1}'`
+    VALUE=`echo $1 | awk -F= '{print $2}'`
     
-    case $key in
+    case $KEY in
       l)
         FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
       ;;
       i)
-        FACEINDEX_SERVER=$2
+        FACEINDEX_SERVER=$VALUE
       ;;
     esac
-fi
+done
 
 echo "Setting FACE_RECOGNITION_SERVER to: $FACEINDEX_SERVER"
 LEGION_ENV=$GOPATH/src/github.com/Novetta/legion/dev/legion.env
