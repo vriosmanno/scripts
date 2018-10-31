@@ -3,15 +3,14 @@
 FACEINDEX_SERVER=10.0.0.41
 
 while [ "$1" != "" ]; do
-    KEY=`echo $1 | awk -F= '{print $1}'`
-    VALUE=`echo $1 | awk -F= '{print $2}'`
+    KEY="$1"
     
     case $KEY in
       l)
         FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
       ;;
       i)
-        FACEINDEX_SERVER=$VALUE
+        FACEINDEX_SERVER="$2"
       ;;
     esac
 done
