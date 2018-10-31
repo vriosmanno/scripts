@@ -6,10 +6,10 @@ while [ "$1" != "" ]; do
     KEY="$1"
     
     case $KEY in
-      l)
+      -l)
         FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
       ;;
-      i)
+      -i)
         FACEINDEX_SERVER="$2"
       ;;
     esac
