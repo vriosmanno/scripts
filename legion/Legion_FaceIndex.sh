@@ -2,10 +2,18 @@
 # Default Server
 FACEINDEX_SERVER=10.0.0.41
 
-if [[ $1 -eq "l" ]]
-    FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
-elif [[ $1 -eq "i" ]]
-    FACEINDEX_SERVER=$2
+if [ $1 != "" ]
+    key="$1"
+    
+    case $key in
+      l)
+        FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+      ;;
+      i)
+        FACEINDEX_SERVER=$2
+      ;;
+    esac
+    done
 fi
 
 FACEINDEX_SERVER=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
